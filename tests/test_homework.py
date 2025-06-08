@@ -1,240 +1,230 @@
 """Autograding script."""
 
-import pandas as pd  # type: ignore
-
-from homework import (
-    pregunta_01,
-    pregunta_02,
-    pregunta_03,
-    pregunta_04,
-    pregunta_05,
-    pregunta_06,
-    pregunta_07,
-    pregunta_08,
-    pregunta_09,
-    pregunta_10,
-    pregunta_11,
-    pregunta_12,
-    pregunta_13,
-)
+from homework import pregunta_01 as pregunta
 
 
 def test_01():
     """Test homework"""
 
-    assert pregunta_01.pregunta_01() == 40
+    df = pregunta.pregunta_01()
 
+    # Test 1
+    assert df.cluster.to_list() == list(range(1, 14))
 
-def test_02():
-    """Test 02"""
-    assert pregunta_02.pregunta_02() == 4
-
-
-def test_03():
-    """Test 03"""
-    assert pregunta_03.pregunta_03().equals(
-        pd.Series(
-            {
-                "A": 8,
-                "B": 7,
-                "C": 5,
-                "D": 6,
-                "E": 14,
-            }
-        )
-    )
-
-
-def test_04():
-    """Test 04"""
-    assert pregunta_04.pregunta_04().equals(
-        pd.Series(
-            {
-                "A": 4.625,
-                "B": 5.142857142857143,
-                "C": 5.4,
-                "D": 3.8333333333333335,
-                "E": 4.785714285714286,
-            }
-        )
-    )
-
-
-def test_05():
-    """Test 05"""
-    assert pregunta_05.pregunta_05().equals(
-        pd.Series(
-            {
-                "A": 9,
-                "B": 9,
-                "C": 9,
-                "D": 7,
-                "E": 9,
-            }
-        )
-    )
-
-
-def test_06():
-    """Test 06"""
-    assert pregunta_06.pregunta_06() == ["A", "B", "C", "D", "E", "F", "G"]
-
-
-def test_07():
-    """Test 07"""
-    assert pregunta_07.pregunta_07().equals(
-        pd.Series(
-            {
-                "A": 37,
-                "B": 36,
-                "C": 27,
-                "D": 23,
-                "E": 67,
-            }
-        )
-    )
-
-
-def test_08():
-    """Test 08"""
-    assert pregunta_08.pregunta_08().columns.tolist() == [
-        "c0",
-        "c1",
-        "c2",
-        "c3",
-        "suma",
-    ]
-    assert pregunta_08.pregunta_08().shape == (40, 5)
-    assert pregunta_08.pregunta_08().suma.tolist() == [
-        1,
-        3,
-        7,
-        6,
-        10,
-        12,
-        15,
-        8,
-        10,
-        12,
-        17,
-        16,
-        15,
-        21,
-        23,
-        16,
-        19,
-        22,
-        26,
-        28,
-        27,
-        24,
-        27,
-        24,
-        28,
-        31,
-        34,
-        32,
-        34,
-        29,
-        31,
-        33,
-        37,
-        37,
-        40,
+    # Test 2
+    assert df.cantidad_de_palabras_clave.to_list() == [
+        105,
+        102,
+        89,
+        60,
+        52,
+        51,
         42,
-        44,
-        46,
-        39,
-        44,
+        38,
+        35,
+        27,
+        22,
+        22,
+        17,
     ]
 
-
-def test_09():
-    """Test 09"""
-    assert pregunta_09.pregunta_09().columns.tolist() == [
-        "c0",
-        "c1",
-        "c2",
-        "c3",
-        "year",
-    ]
-    assert pregunta_09.pregunta_09().shape == (40, 5)
-    assert pregunta_09.pregunta_09().year.head().tolist() == [
-        "1999",
-        "1999",
-        "1998",
-        "1999",
-        "1999",
-    ]
-    assert pregunta_09.pregunta_09().year.tail().tolist() == [
-        "1999",
-        "1997",
-        "1997",
-        "1999",
-        "1998",
+    # Test 3
+    assert df.porcentaje_de_palabras_clave.to_list() == [
+        15.9,
+        15.4,
+        13.4,
+        9.1,
+        7.9,
+        7.7,
+        6.3,
+        5.7,
+        5.3,
+        4.1,
+        3.3,
+        3.3,
+        2.6,
     ]
 
-
-def test_10():
-    """Test 10"""
-    assert pregunta_10.pregunta_10().equals(
-        pd.DataFrame(
-            {
-                "c2": [
-                    "1:1:2:3:6:7:8:9",
-                    "1:3:4:5:6:8:9",
-                    "0:5:6:7:9",
-                    "1:2:3:5:5:7",
-                    "1:1:2:3:3:4:5:5:5:6:7:8:8:9",
-                ]
-            },
-            index=pd.Series(["A", "B", "C", "D", "E"], name="_c1"),
-        )
+    # Test 4
+    assert df.principales_palabras_clave.to_list()[0] == (
+        "maximum power point tracking, "
+        "fuzzy-logic based control, "
+        "photo voltaic (pv), "
+        "photo-voltaic system, "
+        "differential evolution algorithm, "
+        "evolutionary algorithm, "
+        "double-fed induction generator (dfig), "
+        "ant colony optimisation, "
+        "photo voltaic array, "
+        "firefly algorithm, "
+        "partial shade"
     )
 
+    assert df.principales_palabras_clave.to_list()[1] == (
+        "support vector machine, "
+        "long short-term memory, "
+        "back-propagation neural network, "
+        "convolution neural network, "
+        "speed wind prediction, "
+        "energy consumption, "
+        "wind power forecasting, "
+        "extreme learning machine, "
+        "recurrent-neural-network (rnn), "
+        "radial basis "
+        "function (rbf) networks, "
+        "wind farm"
+    )
 
-def test_11():
-    """Test 11"""
-    assert pregunta_11.pregunta_11().columns.tolist() == ["c0", "c4"]
-    assert pregunta_11.pregunta_11().shape == (40, 2)
-    assert pregunta_11.pregunta_11().c4.head().tolist() == [
-        "b,f,g",
-        "a,c,f",
-        "a,c,e,f",
-        "a,b",
-        "a,d,f,g",
-    ]
-    assert pregunta_11.pregunta_11().c4.tail().tolist() == [
-        "a,f",
-        "a,c",
-        "a,c,e,f",
-        "d,e",
-        "a,d,f",
-    ]
+    assert df.principales_palabras_clave.to_list()[2] == (
+        "smart grid, "
+        "wind power, "
+        "reinforcement learning, "
+        "energy management, "
+        "energy efficiency, "
+        "solar energy, "
+        "deep reinforcement learning, "
+        "demand-response (dr), "
+        "internet of things, "
+        "energy harvester, "
+        "q-learning"
+    )
 
+    assert df.principales_palabras_clave.to_list()[3] == (
+        "wind turbine, "
+        "fault diagnosis, "
+        "biodiesel, "
+        "failure detection, "
+        "response-surface methodology, "
+        "condition monitoring, "
+        "load forecasting, "
+        "energy consumption forecast, "
+        "anomalies detection, "
+        "optimization-based algorithm, "
+        "supervisory control and data acquisition"
+    )
 
-def test_12():
-    """Test 12"""
-    assert pregunta_12.pregunta_12().columns.tolist() == ["c0", "c5"]
-    assert pregunta_12.pregunta_12().shape == (40, 2)
-    assert pregunta_12.pregunta_12().c5.head().tolist() == [
-        "bbb:0,ddd:9,ggg:8,hhh:2,jjj:3",
-        "aaa:3,ccc:2,ddd:0,hhh:9",
-        "ccc:6,ddd:2,ggg:5,jjj:1",
-        "bbb:1,eee:7,hhh:9,iii:5",
-        "ddd:5,eee:4,iii:6,jjj:3",
-    ]
-    assert pregunta_12.pregunta_12().c5.tail().tolist() == [
-        "aaa:0,ddd:3,fff:5",
-        "bbb:4,ccc:0,ddd:5,iii:7,jjj:2",
-        "eee:0,fff:2,hhh:6",
-        "eee:0,fff:9,iii:2",
-        "ggg:3,hhh:8,jjj:5",
-    ]
+    assert df.principales_palabras_clave.to_list()[4] == (
+        "electric vehicle, "
+        "lithium-ion batteries, "
+        "state of charge, "
+        "state of health, "
+        "hybrid-electric vehicle, "
+        "energy management strategies, "
+        "energy management system, "
+        "remaining useful life, "
+        "battery management system, "
+        "transfer learning, "
+        "hybrid energy storage"
+    )
 
+    assert df.principales_palabras_clave.to_list()[5] == (
+        "particle swarm optimization, "
+        "distribute generation, "
+        "solar irradiance, "
+        "artificial bee colonies, "
+        "energy storage systems, "
+        "bat algorithm, "
+        "gravitational search algorithm, "
+        "distributed system, "
+        "multi-objective swarm optimization (mopso), "
+        "optimal power-flow (opf), "
+        "load-frequency control"
+    )
 
-def test_13():
-    """Test 13"""
-    assert pregunta_13.pregunta_13().equals(
-        pd.Series({"A": 146, "B": 134, "C": 81, "D": 112, "E": 275})
+    assert df.principales_palabras_clave.to_list()[6] == (
+        "multi-objective optimization, "
+        "energy storage, "
+        "economic dispatch, "
+        "non-dominated sorting genetic algorithm, "
+        "sensitive analysis, "
+        "hybrid renewable energy source, "
+        "plug-in electric vehicle, "
+        "combined-heat and power, "
+        "multi-objective genetic algorithm, "
+        "unit-commitment, "
+        "dc-dc converters"
+    )
+
+    assert df.principales_palabras_clave.to_list()[7] == (
+        "genetic algorithm, "
+        "demand-side management, "
+        "energy-saving, "
+        "hybrid electric system (hes), "
+        "wind turbine blade, "
+        "data-driven modelling, "
+        "simulated annealing, "
+        "solar forecasting, "
+        "geographic information system, "
+        "renewable energy system, "
+        "cogeneration"
+    )
+
+    assert df.principales_palabras_clave.to_list()[8] == (
+        "anfis, "
+        "global solar irradiance, "
+        "solar irradiance forecast, "
+        "genetic programing, "
+        "islanding detection, "
+        "expert system, "
+        "distributed networks, "
+        "evolutionary computation, "
+        "wavelet-based neural network, "
+        "root mean square errors, "
+        "virtual power plant"
+    )
+
+    assert df.principales_palabras_clave.to_list()[9] == (
+        "micro grid, "
+        "multi-agent systems, "
+        "distributed energy resource, "
+        "batteries energy storage system, "
+        "dc micro grid, "
+        "pitch-control, "
+        "droop control, "
+        "hybrid ac/dc microgrid, "
+        "voltage regulation, "
+        "superconducting magnetic energy storage, "
+        "distributed-control"
+    )
+
+    assert df.principales_palabras_clave.to_list()[10] == (
+        "hydrogen, "
+        "biochar, "
+        "biomass, "
+        "biogas, "
+        "microbial fuel cell, "
+        "gasification, "
+        "biofuel, "
+        "ethanol, "
+        "engine performance, pyrolysis, "
+        "anaerobic digester"
+    )
+
+    assert df.principales_palabras_clave.to_list()[11] == (
+        "state of charge (soc) estimation, "
+        "radial basis function, "
+        "short-term load forecasting, "
+        "computational fluid dynamics, "
+        "generalized-regression neural network, "
+        "monte-carlo simulation, "
+        "multiple linear regression, "
+        "power generation, "
+        "nonlinear auto-regressive exogenous (narx) model neural "
+        "networks, "
+        "surrogate model, "
+        "extreme gradient boosting"
+    )
+
+    assert df.principales_palabras_clave.to_list()[12] == (
+        "pem fuel cell, "
+        "solid-oxide fuel cell, "
+        "deep-belief networks, "
+        "energy optimisation, "
+        "particles-size distributions, "
+        "biomass gasification, "
+        "exergy, "
+        "battery management, "
+        "hydrogen production, "
+        "numeric simulation, "
+        "system-identification"
     )
